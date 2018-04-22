@@ -80,8 +80,5 @@
       "we-passport-oauth2-password": true,
       "we-plugin-i18n-api": true
     }
-  },
-  "dependencies": {
-    "sortablejs": "1.7.0"
   }
 }
