@@ -22,6 +22,10 @@ export default DS.Model.extend({
     inverse: 'creator',
     async: true
   }),
+  histories: DS.hasMany('history', {
+    inverse: 'creator',
+    async: true
+  }),
   comments: DS.hasMany('comment', {
     inverse: 'creator',
     async: true

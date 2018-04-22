@@ -7,6 +7,7 @@ module.exports = function(environment) {
     locationType: 'hash',
     API_HOST: '',
     imageHost: '',
+    GLOBAL_HOST: 'https://shop.linkysystems.com',
     i18n: {
       defaultLocale: 'pt-br'
     },
@@ -77,25 +78,13 @@ module.exports = function(environment) {
         permission: true
       },
       {
-        icon: '<i class="fa fa-trophy" aria-hidden="true"></i>',
-        text: 'Ranking',
-        linkTo: 'ranking',
-        permission: 'view_ranking'
-      },
-      {
-        icon: '<i class="fa fa-picture-o" aria-hidden="true"></i>',
-        text: 'Registros dos usuários',
-        linkTo: 'treasure-checks',
-        permission: 'find_treasure-check'
-      },
-      {
-        icon: '<i class="fa fa-diamond" aria-hidden="true"></i>',
-        text: 'Tesouros',
-        linkTo: 'treasures.index',
-        permission: 'create_treasure'
-      },
-      {
         icon: '<i class="fa fa-newspaper-o" aria-hidden="true"></i>',
+        text: 'Histórias',
+        linkTo: 'history.index',
+        permission: 'create_history'
+      },
+      {
+        icon: '<i class="fa fa-rss" aria-hidden="true"></i>',
         text: 'Notícias',
         linkTo: 'news.index',
         permission: 'create_news'
@@ -253,7 +242,6 @@ module.exports = function(environment) {
     ENV.rootURL = '/admin';
     ENV.imageHost = '';
     ENV.API_HOST = '';
-    ENV.GLOBAL_HOST = 'https://shop.linkysystems.com';
     ENV['ember-simple-auth'].serverTokenEndpoint = ENV['API_HOST'] + ENV['ember-simple-auth'].serverTokenEndpoint;
   }
   return ENV;

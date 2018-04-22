@@ -15,6 +15,11 @@ Router.map(function() {
     this.route('change-password');
   });
 
+  this.route('history', function() {
+    this.route('create');
+    this.route('item', { path: ':id' }, function(){});
+  });
+
   this.route('contents', function() {
     this.route('create');
     this.route('item', { path: ':id' }, function(){});
