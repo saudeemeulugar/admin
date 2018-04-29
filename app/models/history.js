@@ -34,6 +34,8 @@ export default DS.Model.extend({
   images: DS.attr('array'),
   attachment: DS.attr('array'),
 
+  youtubeVideoUrl: DS.attr('string'),
+
   setAlias: DS.attr('string'),
   linkPermanent: DS.attr('string')
 });

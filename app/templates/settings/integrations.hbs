@@ -93,10 +93,53 @@
           </fieldset>
         </div>
       </div>
-
     </div>
 
     <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading"><i class="fa fa-map" aria-hidden="true"></i> Google API:</div>
+        <div class="panel-body">
+          <p class="help-block">Chaves de acesso geradas no "Google console": https://developers.google.com/youtube/registering_an_application</p>
+          <fieldset>
+            <div class="form-group">
+              <label>client_id:</label>
+              {{input value=model.settings.googleApiClientID name="googleApiClientID" class="form-control"}}
+              <p class="help-block">Valor do client_id.</p>
+            </div>
+            <div class="form-group">
+              <label>client_secret:</label>
+              {{input value=model.settings.googleApiClientSecret name="googleApiClientSecret" class="form-control"}}
+            </div>
+          </fieldset>
+          {{#if model.settings.googleApiClientID}}
+            {{#if model.settings.googleApiClientSecret}}
+              {{#if model.settings.googleApiRefreshToken}}
+                <a target="_blank" href="/auth/google/authenticate">Resetar a integração com as APIs da Google. Use a conta da organização no Google</a>
+              {{else}}
+                <a target="_blank" href="/auth/google/authenticate" class="btn btn-warn">Iniciar a integração com o Google. Use a conta da organização no Google</a>
+              {{/if}}
+            {{/if}}
+          {{/if}}
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading"><i class="fa fa-map" aria-hidden="true"></i> Google Drive:</div>
+        <div class="panel-body">
+          <p class="help-block">Pastas de upload e configurações do Google Drive</p>
+          <fieldset>
+            <div class="form-group">
+              <label>ID da pasta para vídeos:</label>
+              {{input value=model.settings.googleDriveVideoFolderId name="googleDriveVideoFolderId" class="form-control"}}
+            </div>
+            <div class="form-group">
+              <label>ID da pasta para audios:</label>
+              {{input value=model.settings.googleDriveAudioFolderId name="googleDriveAudioFolderId" class="form-control"}}
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
       <div class="panel panel-default">
         <div class="panel-heading"><i class="fa fa-map" aria-hidden="true"></i> Google maps:</div>
         <div class="panel-body">
@@ -131,7 +174,7 @@
     </div>
 
     <div class="col-md-12">
-      <div>
+      <div class="footer-actions">
         <button class="btn btn-primary">
           <i class="fa fa-save"></i>
           Salvar
