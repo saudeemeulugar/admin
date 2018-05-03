@@ -14,7 +14,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   },
 
   beforeModel() {
-    console.log('<>', this.get('notifications'), this.get('notifications').setDefaultAutoClear);
     this.get('notifications').setDefaultAutoClear(true);
     this.get('notifications').setDefaultClearDuration(5200);
 
