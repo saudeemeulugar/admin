@@ -7,7 +7,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     const i18n = this.get('i18n');
 
     return  Ember.RSVP.hash({
-      records: this.get('store').query('history', {
+      records: this.get('store').query('certification', {
       }),
       columns: [
         {
@@ -16,23 +16,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
           className: 'mt-c-id'
         },
         {
-          propertyName: 'title',
+          propertyName: 'name',
           filteredBy: 'title',
-          title: i18n.t('form-content-title'),
+          title: 'Nome',
           className: 'mt-c-name text-cell'
-        },
-        {
-          propertyName: 'creator.displayName',
-          disableSorting: true,
-          disableFiltering: true,
-          title: i18n.t('content.creator')
-        },
-        {
-          propertyName: 'highlighted',
-          filteredBy: 'highlighted',
-          title: 'Ordenação',
-          component: 'mt-highlighted',
-          className: 'mt-c-highlighted'
         },
         {
           propertyName: 'published',
@@ -55,7 +42,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
           disableSorting: true,
           disableFiltering: true,
           title: i18n.t('Actions'),
-          component: 'mt-actions-history'
+          component: 'mt-actions-certification'
         }
       ]
     });

@@ -1,0 +1,68 @@
+{{#if model.record.id}}
+  <h1 class="page-header">Editar template "{{model.record.identifier}}"</h1>
+{{else}}
+  <h1 class="page-header">Cadastrar certificado</h1>
+{{/if}}
+
+<form {{action "save" model.record model.alias on="submit"}}>
+  <div class="row">
+    <div class="col-md-8">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Dados</div>
+        <div class="panel-body">
+          <fieldset>
+            <div class="form-group">
+              <label>Name*:</label>
+              {{input value=model.record.name class="form-control" name="name" required="required"}}
+            </div>
+            <div class="form-group">
+              <label>Texto:</label>
+              {{textarea value=model.record.text name="text" class="form-control"}}
+            </div>
+
+
+            <div class="form-group">
+              <label>Identifier*:</label>
+              {{input value=model.record.identifier class="form-control" name="identifier" required="required"}}
+            </div>
+          </fieldset>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <fieldset>
+            <div class="form-group">
+              <label>Imagem de fundo do certificado:</label>
+              {{image-uploader value=model.record.image}}
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">Dados</div>
+        <div class="panel-body">
+          <fieldset>
+            <div class="form-group">
+              <label>Posição*:</label>
+              {{input value=model.record.textPosition class="form-control" name="textPosition" required="required"}}
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="footer-actions">
+        <button class="btn btn-primary">
+          <i class="fa fa-save"></i> Salvar
+        </button>
+        <button {{action 'goTo' 'certifications.templates'}} type="button" class="btn btn-default">
+          <i class="fa fa-step-backward"></i> Templates
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

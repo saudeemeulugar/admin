@@ -1,12 +1,13 @@
 {{#if model.record.id}}
-  <h1 class="page-header">Editar história "{{model.record.title}}"</h1>
+  <h1 class="page-header">Editar certificado "{{model.record.name}}"</h1>
 {{else}}
-  <h1 class="page-header">Cadastrar história</h1>
+  <h1 class="page-header">Cadastrar certificado</h1>
 {{/if}}
 
 <form {{action "save" model.record model.alias on="submit"}}>
   <div class="row">
     <div class="col-md-8">
+
       <div class="panel panel-default">
         <div class="panel-heading">Dados</div>
         <div class="panel-body">
@@ -17,11 +18,14 @@
             </div>
             <div class="form-group">
               <label>{{t 'form-content-about'}}:</label>
-              {{textarea autocomplete=false value=model.record.about class="form-control"}}
+              {{textarea value=model.record.about class="form-control"}}
             </div>
             <div class="form-group">
               <label>{{t 'form-content-body'}}:</label>
-              {{field-text-editor value=model.record.body}}
+              {{tinymce-editor
+                options=editorOptions
+                value=model.record.body
+              }}
             </div>
           </fieldset>
         </div>
@@ -53,6 +57,7 @@
           </fieldset>
         </div>
       </div>
+
     </div>
     <div class="col-md-4">
       <div class="panel panel-default">
@@ -86,32 +91,35 @@
       </div>
 
       {{!--       <div class="panel panel-default">
-            <div class="panel-heading">{{t 'content.form.publish.Title'}}</div>
-            <div class="panel-body">
-              <fieldset>
-                <div class="form-group">
-                  <label>
-                    {{input type="checkbox" checked=model.record.published}} {{t 'form-content-published'}}?
-                  </label>
-                  {{#if model.record.publishedAt}}
-                    <div class="form-group">
-                      <strong>Publicado em:</strong> {{moment-format model.record.publishedAt "DD/MM/YYYY h:mm a"}}
-                    </div>
-                  {{/if}}
-                </div>
-              </fieldset>
+              <div class="panel-heading">{{t 'content.form.publish.Title'}}</div>
+              <div class="panel-body">
+                <fieldset>
+                  <div class="form-group">
+                    <label>
+                      {{input type="checkbox" checked=model.record.published}} {{t 'form-content-published'}}?
+                    </label>
+                    {{#if model.record.publishedAt}}
+                      <div class="form-group">
+                        <strong>Publicado em:</strong> {{moment-format model.record.publishedAt "DD/MM/YYYY h:mm a"}}
+                      </div>
+                    {{/if}}
+                  </div>
+                </fieldset>
+              </div>
             </div>
-          </div>
-      --}}
+       --}}
       <div class="panel panel-default">
-        <div class="panel-heading">Publicação</div>
+        <div class="panel-heading">{{t 'content.form.publish.Title'}}</div>
         <div class="panel-body">
           <fieldset>
-            {{#if model.record.published}}
-              <button {{action 'changePublishedStatus' model.record  false}} type="button" class="btn btn-default">Despublicar</button>
-            {{else}}
-              <button {{action 'changePublishedStatus' model.record true}} type="button" class="btn btn-primary">Publicar</button>
-            {{/if}}
+            {{field-content-publication class="form-group" publicationDate=model.record.publishedAt isPublished=model.record.published}}
+            <hr />
+
+            <div class="form-group">
+              <label>
+                {{input type="checkbox" checked=model.record.showInLists}} Exibir nas listas?
+              </label>
+            </div>
           </fieldset>
         </div>
       </div>
@@ -129,7 +137,7 @@
               }}
             </div>
             <div class="form-group">
-              <strong>{{t 'form-content-updatedAt'}}: </strong> {{#if model.record.updatedAt}}{{moment-format model.record.updatedAt 'DD/MM/YYYY HH:mm'}}{{/if}}
+              <strong>{{t 'form-content-updatedAt'}}: </strong> {{moment-format model.record.updatedAt 'DD/MM/YYYY HH:mm'}}
             </div>
           </fieldset>
         </div>
@@ -150,10 +158,12 @@
     <div class="col-md-12">
       <div class="footer-actions">
         <button class="btn btn-primary">
-          <i class="fa fa-save"></i> Salvar
+          <i class="fa fa-save"></i>
+          {{t 'content.Save'}}
         </button>
-        <button {{action 'goTo' 'history.index'}} type="button" class="btn btn-default">
-          <i class="fa fa-step-backward"></i> Histórias
+        <button {{action 'goTo' 'histories.index'}} type="button" class="btn btn-default">
+          <i class="fa fa-step-backward"></i>
+          {{t 'content.find'}}
         </button>
       </div>
     </div>

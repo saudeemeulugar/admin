@@ -20,6 +20,16 @@ Router.map(function() {
     this.route('item', { path: ':id' }, function(){});
   });
 
+  this.route('certifications', function() {
+    this.route('templates', function() {
+      this.route('item', { path: ':id' }, function(){});
+    });
+
+    this.route('create');
+    this.route('item', { path: ':id' }, function(){});
+  });
+
+
   this.route('contents', function() {
     this.route('create');
     this.route('item', { path: ':id' }, function(){});

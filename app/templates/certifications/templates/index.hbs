@@ -1,0 +1,16 @@
+<h1 class="page-header">Templates de certificados</h1>
+<div class="actions">
+  {{#link-to 'certifications.templates' class="btn btn-default"}}
+    Templates
+  {{/link-to}}
+</div>
+<br>
+
+{{conteudos-table
+  data=model.records
+  columns=model.columns
+  pageSize=25
+  useFilteringByColumns=true
+  deleteRecord='deleteRecord'
+  changePublishedStatus='changePublishedStatus'
+}}

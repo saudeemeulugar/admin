@@ -4,29 +4,24 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   actions: {
     deleteRecord(record) {
-      if (confirm(`Tem certeza que deseja deletar o conteúdo "${record.get('title')}"? \nEssa ação não pode ser desfeita.`)) {
+      if (confirm(`Tem certeza que deseja deletar o certificado "${record.get('name')}"? \nEssa ação não pode ser desfeita.`)) {
         record.destroyRecord()
         .then( ()=> {
-          this.get('notifications').success(`O conteúdo "${record.get('title')}" foi deletado.`);
-          this.transitionTo('contents.index');
+          this.get('notifications').success(`O certificado "${record.get('name')}" foi deletado.`);
+          this.transitionTo('certifications.index');
           return null;
         });
       }
     },
     changePublishedStatus(record, status) {
       Ember.set(record, 'published', status);
-      if (status) {
-        Ember.set(record, 'publishedAt', new Date());
-      } else {
-        Ember.set(record, 'publishedAt', null);
-      }
 
       record.save()
       .then( (r)=> {
         if (status) {
-          this.get('notifications').success('Conteúdo publicado.');
+          this.get('notifications').success('Certificado publicado.');
         } else {
-          this.get('notifications').success('Conteúdo despublicado.');
+          this.get('notifications').success('Certificado despublicado.');
         }
         // success
         return r;

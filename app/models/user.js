@@ -17,7 +17,6 @@ export default DS.Model.extend({
     inverse: 'creator',
     async: true
   }),
-
   contents: DS.hasMany('content', {
     inverse: 'creator',
     async: true
@@ -34,12 +33,14 @@ export default DS.Model.extend({
     inverse: 'creator',
     async: true
   }),
-
+  certifications: DS.hasMany('certification', {
+    inverse: 'user',
+    async: true
+  }),
   vocabularies: DS.hasMany('vocabulary', {
     inverse: 'creator',
     async: true
   }),
-
   actions: DS.hasMany('treasure-action', {
     inverse: 'creator',
     async: true

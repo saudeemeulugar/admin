@@ -127,6 +127,12 @@ module.exports = function(environment) {
       },
       {
         icon: '<i class="fa fa-users"></i>',
+        text: 'Certificados',
+        linkTo: 'certifications',
+        permission: 'find_certification'
+      },
+      {
+        icon: '<i class="fa fa-users"></i>',
         text: 'Usuários',
         linkTo: 'users.index',
         permission: 'find_user'
