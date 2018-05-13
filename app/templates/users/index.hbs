@@ -1,0 +1,15 @@
+<h1 class="page-header">{{t 'user.find'}}</h1>
+
+<div class="actions">
+  {{#acl-btn-create model="user" url="/users/create"}}{{t 'Register'}}{{/acl-btn-create}}
+  <a href="{{model.tablesExportUrl}}" class="btn btn-default" target="_blank"><i class="fa fa-table" aria-hidden="true"></i> Exportar</a>
+</div>
+<br>
+
+{{table-user
+  data=model.users
+  columns=model.columns
+  pageSize=25
+  useFilteringByColumns=true
+  updateQuery='updateQuery'
+}}

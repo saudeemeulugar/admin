@@ -25,6 +25,11 @@ export default DS.Model.extend({
     inverse: 'histories',
     async: true
   }),
+
+  country: DS.attr('string'),
+  locationState: DS.attr('string'),
+  city: DS.attr('string'),
+
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date'),
   publishedAt: DS.attr('date'),

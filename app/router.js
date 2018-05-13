@@ -17,6 +17,7 @@ Router.map(function() {
 
   this.route('history', function() {
     this.route('create');
+    this.route('reports');
     this.route('item', { path: ':id' }, function(){});
   });
 
@@ -28,7 +29,6 @@ Router.map(function() {
     this.route('create');
     this.route('item', { path: ':id' }, function(){});
   });
-
 
   this.route('contents', function() {
     this.route('create');
@@ -105,6 +105,11 @@ Router.map(function() {
 
   this.route('comments', function() {
     this.route('item', { path: ':id' }, function(){});
+  });
+
+  this.route('reports', function() {
+    this.route('history');
+    this.route('user');
   });
 
   this.route('widgets');

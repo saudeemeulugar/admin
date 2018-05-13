@@ -1,14 +1,18 @@
 <h1 class="page-header">Histórias</h1>
 <div class="actions">
   {{#acl-btn-create model="history" url="/history/create"}}Cadastrar história{{/acl-btn-create}}
+  <a href="{{model.tablesExportUrl}}" class="btn btn-default" target="_blank"><i class="fa fa-table" aria-hidden="true"></i> Exportar</a>
+  {{#link-to 'history.reports' class="btn btn-default"}} Mais dados
+  {{/link-to}}
 </div>
 <br>
 
-{{conteudos-table
+{{table-history
   data=model.records
   columns=model.columns
   pageSize=25
   useFilteringByColumns=true
+  updateQuery='updateQuery'
   deleteRecord='deleteRecord'
   changePublishedStatus='changePublishedStatus'
 }}

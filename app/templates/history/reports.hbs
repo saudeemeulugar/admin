@@ -1,0 +1,46 @@
+<h1>Mais dados</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">Histórias nos estados</div>
+      <div class="panel-body">
+        <table class="table">
+          <tbody>
+            {{#each model.historiesCountInStates as |d|}}
+              <tr>
+                <td>{{d.locationState}}</td>
+                <td>{{d.count}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+      <div class="panel-footer">
+        <a href="{{model.historiesCountInStatesURL}}" class="btn btn-default btn-sm" download="history-count-in-states.csv">Exportar</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">usuários nos estados</div>
+      <div class="panel-body">
+        <table class="table">
+          <tbody>
+            {{#each model.usersCountInStates as |d|}}
+              <tr>
+                <td>{{d.locationState}}</td>
+                <td>{{d.count}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+      <div class="panel-footer">
+        <a href="{{model.usersCountInStatesURL}}" class="btn btn-default btn-sm" download="user-count-in-states.csv">Exportar</a>
+      </div>
+    </div>
+  </div>
+
+</div>

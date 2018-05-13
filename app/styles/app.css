@@ -117,3 +117,7 @@ h1,
 .globalSearch {
   margin-bottom: 5px;
 }
+
+.changeFilterForColumn {
+  padding-right: 0px !important;
+}

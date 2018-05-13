@@ -68,7 +68,7 @@
     "ember-uploader": "1.2.3",
     "fs-extra": "5.0.0",
     "loader.js": "4.6.0",
-    "we-admin": "wejs/we-admin#v1.0.10",
+    "we-admin": "wejs/we-admin#v1.0.11",
     "we-admin-news": "linkysystems/we-admin-news#v1.0.0"
   },
   "keywords": [

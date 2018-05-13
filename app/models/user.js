@@ -8,6 +8,18 @@ export default DS.Model.extend({
   biography: DS.attr('string'),
   gender: DS.attr('string'),
   email: DS.attr('string'),
+  passaporte: DS.attr('string'),
+  cpf: DS.attr('string'),
+
+  publishedHistoryCount: DS.attr('boolean'),
+  cellphone: DS.attr('string'),
+  phone: DS.attr('string'),
+
+  country: DS.attr('string'),
+  locationState: DS.attr('string'),
+  city: DS.attr('string'),
+  locationText: DS.attr('string'),
+
   active: DS.attr('boolean'),
   blocked: DS.attr('boolean'),
   language: DS.attr('string'),

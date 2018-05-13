@@ -8,9 +8,7 @@ module.exports = function(environment) {
     API_HOST: '',
     imageHost: '',
     GLOBAL_HOST: 'https://shop.linkysystems.com',
-    i18n: {
-      defaultLocale: 'pt-br'
-    },
+    i18n: { defaultLocale: 'pt-br' },
 
     settingsMenu: {
       links: [
@@ -199,9 +197,9 @@ module.exports = function(environment) {
         // ignoreURLs: []
       }
     },
-    tinyMCE:{
-      version: 4
-    }
+    tinyMCE: {
+      load: false
+    },
   };
   ENV['ember-simple-auth'] = {
     identificationField: 'email',

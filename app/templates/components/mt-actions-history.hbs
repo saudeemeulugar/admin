@@ -3,6 +3,11 @@
 {{#bs-tooltip placement="top"}}Ver{{/bs-tooltip}}
 </a>
 
+<a href="{{ENV.API_HOST}}{{record.linkPermanent}}.csv" class="btn btn-default btn-sm" target="_blank" download="download">
+  <i class="fa fa-table" aria-hidden="true"></i>
+  {{#bs-tooltip placement="top"}}CSV{{/bs-tooltip}}
+</a>
+
 {{#link-to 'history.item' record.id class="btn btn-default btn-sm"}}
   <i class="glyphicon glyphicon-pencil text-success"></i>
   {{#bs-tooltip placement="top"}}Editar{{/bs-tooltip}}
