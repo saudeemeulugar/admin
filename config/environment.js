@@ -23,11 +23,6 @@ module.exports = function(environment) {
         linkTo: 'settings.index'
       },
       {
-        icon: '<i class="fa fa-tachometer" aria-hidden="true"></i>',
-        text: 'Visual e tema',
-        linkTo: 'settings.theme'
-      },
-      {
         icon: '<i class="fa fa-mixcloud" aria-hidden="true"></i>',
         text: 'Integrações',
         linkTo: 'settings.integrations'
