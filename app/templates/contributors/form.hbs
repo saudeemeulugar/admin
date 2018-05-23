@@ -1,0 +1,35 @@
+{{#if model.record.id}}
+  <h1 class="page-header">Editar dados do contribuidor</h1>
+{{else}}
+  <h1 class="page-header">Cadastrar contribuidor</h1>
+{{/if}}
+
+<form {{action "save" model.record model.alias on="submit"}}>
+  <div class="row">
+    <div class="col-md-8">
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <fieldset>
+            <div class="form-group">
+              <label>Nome*:</label>
+              {{input value=model.record.name class="form-control" required="required"}}
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="footer-actions">
+        <button class="btn btn-primary">
+          <i class="fa fa-save"></i> Salvar
+        </button>
+        <button {{action 'goTo' 'contributors.index'}} type="button" class="btn btn-default">
+          <i class="fa fa-step-backward"></i>
+          Contribuidores
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

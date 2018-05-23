@@ -1,0 +1,28 @@
+<h1 class="page-header">Contribuidores</h1>
+<div class="actions">
+  {{#acl-btn-create model="contributor" url="/contributors/create"}}Cadastrar{{/acl-btn-create}}
+</div>
+<br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>#</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model.records as |r|}}
+      <tr>
+        <td>
+          {{r.name}}
+        </td>
+        <td>
+          {{#link-to 'contributors.item' r.id class="btn btn-default btn-sm"}}
+            Editar
+          {{/link-to}}
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

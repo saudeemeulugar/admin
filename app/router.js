@@ -112,6 +112,11 @@ Router.map(function() {
     this.route('user');
   });
 
+  this.route('contributors', function() {
+    this.route('create');
+    this.route('item', { path: ':id' }, function(){});
+  });
+
   this.route('widgets');
   this.route('permissions');
   this.route('roles');

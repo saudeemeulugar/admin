@@ -131,6 +131,12 @@ module.exports = function(environment) {
         permission: 'find_user'
       },
       {
+        icon: '<i class="fa fa-users"></i>',
+        text: 'Contribuidores',
+        linkTo: 'contributors.index',
+        permission: 'find_contributor'
+      },
+      {
         icon: '<i class="fa fa-envelope" aria-hidden="true"></i>',
         text: 'Templates de email',
         linkTo: 'email-templates.index',
