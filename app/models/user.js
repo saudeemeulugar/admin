@@ -53,10 +53,6 @@ export default DS.Model.extend({
     inverse: 'creator',
     async: true
   }),
-  actions: DS.hasMany('treasure-action', {
-    inverse: 'creator',
-    async: true
-  }),
 
   linkPermanent: DS.attr('string'),
   createdAt: DS.attr('date'),
