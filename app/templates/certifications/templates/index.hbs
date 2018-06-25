@@ -1,10 +1,6 @@
 <h1 class="page-header">Templates de certificados</h1>
-<div class="actions">
-  {{#link-to 'certifications.templates' class="btn btn-default"}}
-    Templates
-  {{/link-to}}
-</div>
-<br>
+
+{{partial 'certifications/actions'}}
 
 {{conteudos-table
   data=model.records
