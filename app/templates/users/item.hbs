@@ -1,0 +1,134 @@
+<h1 class="page-header">{{t 'user.edit' username=model.user.displayName}}</h1>
+
+{{#bs-tab activeId=model.tab as |tab|}}
+  {{#tab.pane elementId="userTabPaneData" title=(t 'user.Data')}}
+    <form {{action "save" model.user on="submit"}}>
+      <fieldset>
+        <div class="form-group">
+          <label>Nome de exibição*:</label>
+          {{input value=model.user.displayName class="form-control" required="required"}}
+          <p class="help-block">Nome público exibido para qualquer pessoa que acesse o sistema.</p>
+        </div>
+        <div class="form-group">
+          <label>Nome completo*:</label>
+          {{input value=model.user.fullName class="form-control" required="required"}}
+          <p class="help-block">Nome completo, importante para geração de certificados.</p>
+        </div>
+        <div class="form-group">
+          <label>Email*:</label>
+          {{input value=model.user.email class="form-control" required="required"}}
+          <p class="help-block">E-mail principal do usuário, importante para ações de validação como mudança de senha e contato.</p>
+        </div>
+        <div class="form-group">
+          <label>Celular:</label>
+          {{input value=model.user.cellphone class="form-control"}}
+        </div>
+        <div class="form-group">
+          <label>Telefone:</label>
+          {{input value=model.user.phone class="form-control"}}
+        </div>
+
+        <hr>
+
+        <div class="form-group">
+          <label>
+            {{input type="checkbox" checked=model.user.estrangeiro}}
+            Estrangeiro?
+          </label>
+        </div>
+        {{#if model.user.estrangeiro}}
+          <div class="form-group">
+            <label>Passaporte:</label>
+            {{input value=model.user.passaporte class="form-control"}}
+            <p class="help-block">Passaporte caso não possua CPF.</p>
+          </div>
+        {{else}}
+          <div class="form-group">
+            <label>CPF:</label>
+            {{input value=model.user.cpf class="form-control"}}
+            <p class="help-block">CPF do usuário. Use o campo passaporte caso o usuário não possua CPF.</p>
+          </div>
+        {{/if}}
+
+        <hr>
+
+        <div class="form-group">
+          <label>Sexo:</label>
+          {{input value=model.user.gender class="form-control"}}
+           <p class="help-block">M para masculino ou F para feminino.</p>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="form-group">
+          <label>{{t 'form-user-avatar'}}:</label>
+          {{image-uploader value=model.user.avatar multiple=false}}
+        </div>
+      </fieldset>
+      <div>
+        <button class="btn btn-primary">
+          <i class="fa fa-save"></i>
+          {{t 'Save'}}
+        </button>
+
+        <div class="pull-right">
+          {{#if model.user.blocked}}
+            <button {{action 'changeBlockStatus' model.user false}} type="button" class="btn btn-default">
+              {{t 'Un Block'}}
+            </button>
+          {{else}}
+            <button {{action 'changeBlockStatus' model.user true}} type="button" class="btn btn-danger">
+              {{t 'Block'}}
+            </button>
+          {{/if}} {{#if model.user.active}}
+            <button {{action 'changeActiveStatus' model.user false}} type="button" class="btn btn-warning">
+              {{t 'Disable'}}
+            </button>
+          {{else}}
+            <button {{action 'changeActiveStatus' model.user true}} type="button" class="btn btn-success">
+              {{t 'Enable'}}
+            </button>
+          {{/if}}
+        </div>
+      </div>
+    </form>
+  {{/tab.pane}}
+  {{#tab.pane elementId="userTabPanePassword" title=(t 'auth.Password-and-login')}}
+    <h4>{{t 'auth.change-password'}}</h4>
+    <form {{action "changePassword" model on="submit"}}>
+      <fieldset>
+        <div class="form-group">
+          <label>{{t 'form-change-password-newPassword'}}</label>
+          {{input value=model.newPassword class="form-control" placeholder=(t 'form-placeholder-change-password-newPassword') required="required" type="password"}}
+        </div>
+        <div class="form-group">
+          <label>{{t 'form-change-password-rNewPassword'}}</label>
+          {{input value=model.rNewPassword class="form-control" placeholder=(t 'form-placeholder-change-password-rNewPassword') required="required" type="password"}}
+        </div>
+      </fieldset>
+      <div>
+        <button type="submit" class="btn btn-primary">
+          <i class="fa fa-save"></i>
+          {{t 'Send'}}
+        </button>
+      </div>
+    </form>
+  {{/tab.pane}}
+  {{#tab.pane elementId="userTabPaneRoles" title=(t 'roles.link')}}
+    <ul class="list-group">
+      {{#each model.roles as |role|}}
+        {{#if role.canAddInUsers}}
+          <li class="list-group-item">
+            {{user-role-checkbox
+              user=model.user
+              roleName=role.name
+              class="btn btn-default"
+              addUserRole="addUserRole"
+              removeUserRole="removeUserRole"
+            }}
+            {{role.name}}
+          </li>
+        {{/if}}
+      {{/each}}
+    </ul>
+  {{/tab.pane}}
+{{/bs-tab}}
