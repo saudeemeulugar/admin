@@ -8,10 +8,10 @@
   {{#bs-tooltip placement="top"}}CSV{{/bs-tooltip}}
 </a>
 
-{{#link-to 'history.item' record.id class="btn btn-default btn-sm"}}
+<a href="{{ENV.API_HOST}}/history/{{record.id}}/edit" class="btn btn-default btn-sm" target="_blank">
   <i class="glyphicon glyphicon-pencil text-success"></i>
   {{#bs-tooltip placement="top"}}Editar{{/bs-tooltip}}
-{{/link-to}}
+</a>
 
 {{#if record.published}}
   <button {{action 'changePublishedStatus' record false}} type="button" class="btn btn-default btn-sm">
