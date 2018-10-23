@@ -200,7 +200,7 @@ module.exports = function(environment) {
     },
     tinyMCE: {
       load: false
-    },
+    }
   };
   ENV['ember-simple-auth'] = {
     identificationField: 'email',
@@ -209,7 +209,6 @@ module.exports = function(environment) {
     routeAfterAuthentication: 'index',
     routeIfAlreadyAuthenticated: 'index',
     serverTokenEndpoint: '/auth/grant-password/authenticate',
-
 
     authorizer: 'authorizer:custom',
     store: 'simple-auth-session-store:cookie', // optional

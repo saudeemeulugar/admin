@@ -27,8 +27,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         },
         {
           propertyName: 'creator.displayName',
+          filteredBy: 'creatorName_like',
           disableSorting: true,
-          disableFiltering: true,
           title: i18n.t('content.creator')
         },
         {
