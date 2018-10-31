@@ -6,6 +6,7 @@
 @import 'login-form.css';
 @import 'bootstrap-loagind.css';
 @import 'tags.css';
+@import 'history.css';
 
 .navbar-default {
   margin-bottom: 0px;

@@ -1,0 +1,207 @@
+{{#with (hash
+  global-filter=(
+    component themeInstance.components.global-filter
+    value=filterString
+    globalFilterUsed=globalFilterUsed
+    themeInstance=themeInstance
+    messages=messages
+    sendAction=(action "sendAction")
+  )
+  columns-dropdown=(
+    component themeInstance.components.columns-dropdown
+    processedColumns=processedColumns
+    columnDropdownOptions=columnDropdownOptions
+    themeInstance=themeInstance
+    messages=messages
+    showAllColumns=(action "showAllColumns")
+    hideAllColumns=(action "hideAllColumns")
+    restoreDefaultVisibility=(action "restoreDefaultVisibility")
+    toggleColumnSet=(action "toggleColumnSet")
+    toggleHidden=(action "toggleHidden")
+    sendAction=(action "sendAction")
+  )
+  table=(
+    component themeInstance.components.table
+    noHeaderFilteringAndSorting=noHeaderFilteringAndSorting
+    groupedHeaders=groupedHeaders
+    sort=(action "sort")
+    visibleContent=visibleContent
+    selectedItems=selectedItems
+    expandedItems=expandedItems
+    expandedRowComponent=expandedRowComponent
+    processedColumns=processedColumns
+    visibleProcessedColumns=visibleProcessedColumns
+    useFilteringByColumns=useFilteringByColumns
+    allColumnsAreHidden=allColumnsAreHidden
+    displayGroupedValueAs=displayGroupedValueAs
+    collapsedGroupValues=collapsedGroupValues
+    currentGroupingPropertyName=currentGroupingPropertyName
+    groupingRowComponent=groupingRowComponent
+    groupSummaryRowComponent=groupSummaryRowComponent
+    dataGroupOptions=dataGroupOptions
+    groupedVisibleContentValuesOrder=groupedVisibleContentValuesOrder
+    groupedVisibleContent=groupedVisibleContent
+    groupedArrangedContent=groupedArrangedContent
+    useDataGrouping=useDataGrouping
+    clickOnRow=(action "clickOnRow")
+    toggleGroupedRowsSelection=(action "toggleGroupedRowsSelection")
+    toggleGroupedRowsExpands=(action "toggleGroupedRowsExpands")
+    toggleGroupedRows=(action "toggleGroupedRows")
+    doubleClickOnRow=(action "doubleClickOnRow")
+    hoverOnRow=(action "hoverOnRow")
+    outRow=(action "outRow")
+    data=data
+    themeInstance=themeInstance
+    messages=messages
+    sendAction=(action "sendAction")
+    expandRow=(action "expandRow")
+    collapseRow=(action "collapseRow")
+    expandAllRows=(action "expandAllRows")
+    collapseAllRows=(action "collapseAllRows")
+    toggleAllSelection=(action "toggleAllSelection")
+  )
+  data-group-by-select=(
+    component themeInstance.components.data-group-by-select
+    value=currentGroupingPropertyName
+    currentGroupingPropertyName=currentGroupingPropertyName
+    themeInstance=themeInstance
+    options=dataGroupOptions
+    sortByGroupedFieldDirection=sortByGroupedFieldDirection
+    messages=messages
+    sendAction=(action "sendAction")
+    sort=(action "sort")
+  )
+  footer=(
+    component themeInstance.components.footer
+    firstIndex=firstIndex
+    lastIndex=lastIndex
+    recordsCount=arrangedContentLength
+    anyFilterUsed=anyFilterUsed
+    pageSizeOptions=pageSizeOptions
+    pageSize=pageSize
+    currentPageNumber=currentPageNumber
+    pagesCount=pagesCount
+    showPageSize=showPageSize
+    useNumericPagination=useNumericPagination
+    goToPage=(action "gotoCustomPage")
+    clearFilters=(action "clearFilters")
+    themeInstance=themeInstance
+    messages=messages
+    sendAction=(action "sendAction")
+  )
+  isLoading=isLoading
+  isError=isError
+  publicAPI=publicAPI
+) as |mt|}}
+  {{#if hasBlock}}
+    {{yield mt}}
+  {{else}}
+  {{! global filter start }}
+    {{#if showGlobalFilter}}
+      <div class="clearfix">
+      {{component mt.global-filter}}
+      </div>
+      <div class="p-custom-filters clearfix">
+        <form class="form-inline">
+          <div class="row">
+
+            <div class="col-md-12 f-terms">
+              <div class="form-group form-group-select">
+                <label>Eixos:</label>
+                {{#power-select
+                  searchEnabled=true
+                  search=(action "searchCategoryTerms")
+                  selected=category
+                  placeholder="Selecione..."
+                  onchange=(action (mut category))
+                  as |k|
+                }}
+                  {{k}}
+                {{/power-select}}
+              </div>
+              <div class="form-group form-group-select">
+                <label>Assuntos:</label>
+                {{#power-select
+                  searchEnabled=true
+                  search=(action "searchTagsTerms")
+                  selected=tag
+                  placeholder="Selecione..."
+                  onchange=(action (mut tag))
+                  as |k|
+                }}
+                  {{k}}
+                {{/power-select}}
+              </div>
+            </div>
+
+            <div class="col-md-12 f-location">
+              <div class="form-group form-group-select">
+                <label>Estado:</label>
+                {{#power-select
+                  searchEnabled=true
+                  search=(action "searchLocationState")
+                  selected=locationState
+                  placeholder="Selecione..."
+                  onchange=(action (mut locationState))
+                  as |k|
+                }}
+                  {{k.text}}
+                {{/power-select}}
+              </div>
+              <div class="form-group form-group-select">
+                <label>Cidade:</label>
+                {{#power-select
+                  searchEnabled=true
+                  disabled=(if locationState false true)
+                  search=(action "searchCity")
+                  selected=city
+                  placeholder="Selecione..."
+                  onchange=(action (mut city))
+                  as |k|
+                }}
+                  {{k.text}}
+                {{/power-select}}
+              </div>
+            </div>
+
+            <div class="col-md-12 f-midia">
+              <div class="form-group midia-group">
+                <strong>Mídia:</strong>
+                <div class="checkbox">
+                  <label>{{input type="checkbox" name="haveText" checked=haveText}} Texto </label>
+                </div>
+                <div class="checkbox">
+                  <label>{{input type="checkbox" name="haveImage" checked=haveImage}} Imagem </label>
+                </div>
+                <div class="checkbox">
+                  <label>{{input type="checkbox" name="haveVideo" checked=haveVideo}} Vídeo </label>
+                </div>
+                <div class="checkbox">
+                  <label>{{input type="checkbox" name="haveAudio" checked=haveAudio}} Audio </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    {{/if}}
+    {{! global filter end }}
+    {{#if useDataGrouping}}
+      {{component mt.data-group-by-select}}
+    {{/if}}
+    {{! columns dropdown start }}
+    {{#if showColumnsDropdown}}
+      {{component mt.columns-dropdown}}
+    {{/if}}
+    {{! columns dropdown end }}
+    {{! Div needed by Firefox to reset floating positioning }}
+    <div class='models-table-clear'></div>
+    {{component mt.table}}
+    {{! table footer start }}
+    {{#if showComponentFooter}}
+      {{component mt.footer}}
+    {{/if}}
+  {{! table footer end }}
+  {{/if}}
+{{/with}}

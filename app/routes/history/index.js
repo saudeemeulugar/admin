@@ -5,14 +5,25 @@ import { inject } from '@ember/service';
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   i18n: inject(),
   settings: inject(),
+
+  // beforeModel() {
+  //   return Ember.RSVP.hash({
+  //     searchOptions: this.getSearchOptions()
+  //   });
+  // },
+
   model() {
+    // const so = this.get('settings.processSearchOptions') || {};
+
     const i18n = this.get('i18n');
 
     return  Ember.RSVP.hash({
+      filterString: '',
       records: this.get('store').query('history', {
       }),
       tablesExportUrl: this.getTablesExportUrl(),
       tableQuery: null,
+      // searchOptions: so,
       columns: [
         {
           propertyName: 'id',
@@ -84,6 +95,33 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     return `${settings.ENV.API_HOST}/exports/history.csv` + params;
   },
+
+  // getSearchOptions() {
+  //   const settings = this.get('settings');
+
+  //   return new window.Promise((resolve, reject)=> {
+  //     if (settings.get('processSearchOptions')) {
+  //       return resolve(settings.get('processSearchOptions'));
+  //     }
+
+  //     return Ember.$.ajax({
+  //       url: settings.ENV.API_HOST + '/history-search-options',
+  //       type: 'get',
+  //       cache: true,
+  //       headers: settings.getHeaders()
+  //     })
+  //     .then( (response)=> {
+  //       console.log('response>', response);
+
+  //       settings.set('processSearchOptions', response);
+
+  //       resolve(response);
+  //     })
+  //     .fail( (err)=> {
+  //       reject(err);
+  //     });
+  //   });
+  // },
 
   actions: {
     updateQuery(query) {
